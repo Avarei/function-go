@@ -28,10 +28,22 @@ spec:
               may reject unrecognized values.
               More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
             type: string
-          example:
-            description: Example is an example field. Replace it with whatever input
-              you need. :)
+          image:
+            description: Image containing the plugin.
             type: string
+          imagePullSecret:
+            description: ImagePullSecret used for pulling this image
+            properties:
+              name:
+                description: name is unique within a namespace to reference a secret
+                  resource.
+                type: string
+              namespace:
+                description: namespace defines the space within which the secret name
+                  must be unique.
+                type: string
+            type: object
+            x-kubernetes-map-type: atomic
           kind:
             description: |-
               Kind is a string value representing the REST resource this object represents.
@@ -43,7 +55,7 @@ spec:
           metadata:
             type: object
         required:
-        - example
+        - image
         type: object
     served: true
     storage: true

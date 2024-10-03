@@ -39,17 +39,18 @@ func TestRunFunction(t *testing.T) {
 					Input: resource.MustStructJSON(`{
 						"apiVersion": "template.fn.crossplane.io/v1beta1",
 						"kind": "Input",
-						"example": "Hello, world"
+						"oci": "ghcr.io/avarei/function-go-example-plugin:v0"
 					}`),
 				},
 			},
+
 			want: want{
 				rsp: &fnv1.RunFunctionResponse{
 					Meta: &fnv1.ResponseMeta{Tag: "hello", Ttl: durationpb.New(response.DefaultTTL)},
 					Results: []*fnv1.Result{
 						{
 							Severity: fnv1.Severity_SEVERITY_NORMAL,
-							Message:  "I was run with input \"Hello, world\"!",
+							Message:  "I was run with input \"ghcr.io/avarei/function-go-example-plugin:v0\"!",
 							Target:   fnv1.Target_TARGET_COMPOSITE.Enum(),
 						},
 					},

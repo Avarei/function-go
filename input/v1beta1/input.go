@@ -5,6 +5,7 @@
 package v1beta1
 
 import (
+	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -22,6 +23,9 @@ type Input struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	// Example is an example field. Replace it with whatever input you need. :)
-	Example string `json:"example"`
+	// OCI Artifact containing the plugin.
+	Oci string `json:"oci"`
+
+	// OciPullSecret used for pulling this oci artifact
+	OciPullSecret *corev1.SecretReference `json:"ociPullSecret,omitempty"`
 }
